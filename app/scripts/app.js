@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   app.comments = ['Hallo Welt!', 'Hallo Karsten!']
   app.sendComment = function() {    
-    app.comments = app.comments.concat(app.newComment);
+    app.splice('comments', 0, 0, app.newComment);
     app.newComment = '';
   }
 })(document);

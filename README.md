@@ -2,6 +2,20 @@
 
 ## Current Step
 
+### Adding new comments - the Polymer way
+
+The Polymer binding system is event based, i.e. each element changing a value is firing an event designating the change of the value. Other elements may be listening for these events and reacting to them by updating their own values.
+
+This means that changing the value itself, as we did in our first approach with adding new comments by pushing them directly on to the array, is not enough. We also need to fire some events to inform listeners. There are some Polymer functions for that available on each Polymer element, i.e. `notifyPath` and `notifySplices` but there are also some convenience functions like `set`, `push` and `splice` (for arrays have a look at [array-mutation](https://www.polymer-project.org/1.0/docs/devguide/properties#array-mutation)).
+
+We could have used the `push` convenience method but we want the new comment to be at the top of the view, i.e. we want it to be the first in the list so we use `splice` instead. And that we do in [app/scripts/app.js](./app/scripts/app.js).
+
+Now everything is working fine. We let Polymer do the work and allow it to simply add a single element to the list view instead of forcing it to rerender the complete list.
+
+Being able to add new comments is great, but we should also be able to delete them, just in case. This we do in the next commit.
+
+## Previous Steps
+
 ### Adding new comments - second approach
 
 We know that our binding is working somehow, because we would not see our inital commits if this were not the case.
@@ -11,8 +25,6 @@ A new assignment as in [app/scripts/app.js](./app/scripts/app.js) should do the 
 Take a look at our [app](http://localhost:5000/) - it is working. But lets reconsider. What about large lists? Do we really want to create a new copy of the list for a simple change? What about rendering - does the browser have to rerender all the elements in the list simply because of on new added comment?
 
 Of course not, i would not ask otherwise - so have a look at the next commit where we are doing things in the Polymer way.
-
-## Previous Steps
 
 ### Adding new comments - a first approach
 
