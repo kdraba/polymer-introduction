@@ -2,6 +2,16 @@
 
 ## Current Step
 
+### Adding a date to our comment
+
+Next we restructure our comment to include a date in additon to the message. In [app/scripts/app.js](./app/scripts/app.js) we simply change the structure of our items in the initial comment list and of the new comment added to the array.
+
+In [app/index.html](./app/index.html) we now use path expression in our bindings to accommodate the structural change.
+
+The added date takes up a lot of space in our view, because it is very verbose. We are going to fix that in our next commit.
+
+## Previous Steps
+
 ### Deleting comments
 
 To delete a comment we need a button inside our template for each individual comment. Just like with the add button we hook this button up with a `on-tap` handler. We do all this in our [app/index.html](./app/index.html).
@@ -9,8 +19,6 @@ To delete a comment we need a button inside our template for each individual com
 The implementation of our handler is a little bit more interesting, because we need to map our event to the comment we want to remove from the list. As you might expect, its quiet easy. An event fired from an element within a `dom-repeat`-template simply provides us the item and the index the element was rendered for in its `model` property ([handling events in dom-repeat](https://www.polymer-project.org/1.0/docs/devguide/templates#handling-events)).
 
 In the next commit we will change the type of our comment from a flat string to an object with a date and a message.
-
-## Previous Steps
 
 ### Adding new comments - the Polymer way
 
