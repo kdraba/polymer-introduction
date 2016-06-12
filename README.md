@@ -2,6 +2,16 @@
 
 ## Current Step
 
+### Deleting comments
+
+To delete a comment we need a button inside our template for each individual comment. Just like with the add button we hook this button up with a `on-tap` handler. We do all this in our [app/index.html](./app/index.html).
+
+The implementation of our handler is a little bit more interesting, because we need to map our event to the comment we want to remove from the list. As you might expect, its quiet easy. An event fired from an element within a `dom-repeat`-template simply provides us the item and the index the element was rendered for in its `model` property ([handling events in dom-repeat](https://www.polymer-project.org/1.0/docs/devguide/templates#handling-events)).
+
+In the next commit we will change the type of our comment from a flat string to an object with a date and a message.
+
+## Previous Steps
+
 ### Adding new comments - the Polymer way
 
 The Polymer binding system is event based, i.e. each element changing a value is firing an event designating the change of the value. Other elements may be listening for these events and reacting to them by updating their own values.
@@ -13,8 +23,6 @@ We could have used the `push` convenience method but we want the new comment to 
 Now everything is working fine. We let Polymer do the work and allow it to simply add a single element to the list view instead of forcing it to rerender the complete list.
 
 Being able to add new comments is great, but we should also be able to delete them, just in case. This we do in the next commit.
-
-## Previous Steps
 
 ### Adding new comments - second approach
 

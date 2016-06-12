@@ -21,4 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     app.splice('comments', 0, 0, app.newComment);
     app.newComment = '';
   }
+  app.deleteComment = function(event) {
+    app.splice('comments', event.model.index, 1);
+  }
 })(document);
