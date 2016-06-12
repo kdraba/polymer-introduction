@@ -2,6 +2,17 @@
 
 ## Current Step
 
+### Formatting the date
+
+We are using [Moment.js](http://momentjs.com/) to format the date. First, we need to install the library using [bower](https://bower.io/).
+
+```shell
+node_modules/.bin/bower install --save momentjs
+```
+In our [app/index.html](./app/index.html) file we include the installed library and update the binding to use a function for formatting the date `<span>[[dateFormat(comment.date)]]</span>`. This function, and therefor the binding, will be updated each time the date attribute of the comment changes, or more specifically the date changes and a change event is fired for the path.
+
+## Previous Steps
+
 ### Adding a date to our comment
 
 Next we restructure our comment to include a date in additon to the message. In [app/scripts/app.js](./app/scripts/app.js) we simply change the structure of our items in the initial comment list and of the new comment added to the array.
@@ -9,8 +20,6 @@ Next we restructure our comment to include a date in additon to the message. In 
 In [app/index.html](./app/index.html) we now use path expression in our bindings to accommodate the structural change.
 
 The added date takes up a lot of space in our view, because it is very verbose. We are going to fix that in our next commit.
-
-## Previous Steps
 
 ### Deleting comments
 

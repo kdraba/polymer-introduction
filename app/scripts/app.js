@@ -24,4 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   app.deleteComment = function(event) {
     app.splice('comments', event.model.index, 1);
   }
+  app.dateFormat = function(date) {
+    return moment(date).format('DD.MM.YY HH:mm:ss');
+  };
 })(document);
