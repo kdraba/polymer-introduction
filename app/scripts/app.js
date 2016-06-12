@@ -17,4 +17,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   var app = document.querySelector('#app');
   
   
+  app.comments = ['Hallo Welt!', 'Hallo Karsten!']
 })(document);

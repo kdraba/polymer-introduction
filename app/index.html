@@ -65,7 +65,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- endbuild -->
 
   <template is="dom-bind" id="app">
-    
+    <template is="dom-repeat" items="[[comments]]" as="comment">
+      <div>[[comment]]</div>
+    </template>
   </template>
 
   <!-- build:js scripts/app.js -->
