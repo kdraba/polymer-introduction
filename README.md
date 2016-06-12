@@ -2,9 +2,29 @@
 
 ## Current Step
 
-### Our hello-world element - the Polymer way
+### A list of comment items
+
+It is time to do something a bit more interesting. Lets use Polymer to display a simple list of comments.
+Our comments are just a simple list of Strings for now. You can see them in [app/scripts/app.js](./app/scripts/app.js).
+
+We register our list of comments as a new property of the `#app` element. To understand how our list is displayed, we need to have a look at the [app/index.html](./app/index.html) file.
+
+First thing to point out is that the element with id `app` is an HTML `template` element with a special `is="dom-bind"` attribute. This attribute and its value are telling Polymer that we want it to bind its content (see: [dom-bind](https://www.polymer-project.org/1.0/docs/devguide/templates#dom-bind)). In general binding is done automatically for our custom elements. But we do not have a custom element here - we will create some later on. So we just tell Polymer to bind this template right away without the need for definint a custom element.
+
+Next thing to point out is the `template` element inside our `#app` element. As you might have guessed already this is what defines what our comments in the list look like. Each of our comments is rendered into the view by stamping the template for each of our items, i.e. each of our comments, that is what `template is="dom-repeat"` is for (see [dom-repeat](https://www.polymer-project.org/1.0/docs/devguide/templates#dom-repeat)).
+
+The binding expression `items="[[comments]]"` references the `comments` property at the `#app` element which we did set up in [app/scripts/app.js](./app/scripts/app.js) before. The attribute `as="comment"` simply tells the binding that we want to be able to reference the individual item inside our template by `comment` which we do when simply stamping the text of each comment in `<div>[[comment]]</div>`.
+
+Do you wonder what the square brackets are for? They mark this binding as a top-down binding, i.e. a binding from host to child only. This will become clearer further into the introduction. (If you feel urgent have a look at [property-binding](https://www.polymer-project.org/1.0/docs/devguide/data-binding#property-binding))
+
+Lets peek ahead a bit. Someone asked me: "If Polymer is about custom elements, why not use a custom `dom-repeat` element instead of the `template` element with an `is="dom-repeat` attribute?" My reasoning is: a custom element has to be interpreted by the browser and a template has not. What do i mean by that? If you wrap a `template` in a custom element just for the sake of the custom element, the browser has to process that element just to get eventually to a wrapped `template` element with which the browser would still do nothing.
+Feel free to correct me here - i am still learning too.
+
+Now that we got a basic list of comments in place, lets go to the next commit where we start working on a feature to add new comments to our list.
 
 ## Previous Steps
+
+### Our hello-world element - the Polymer way
 
 ### Going back to html by using html template for our hello-world element
 
