@@ -2,6 +2,18 @@
 
 ## Current Step
 
+### Adding new comments - second approach
+
+We know that our binding is working somehow, because we would not see our inital commits if this were not the case.
+Initially we did assign the complete list, so lets try that approach for adding a new comment to our list.
+A new assignment as in [app/scripts/app.js](./app/scripts/app.js) should do the trick.
+
+Take a look at our [app](http://localhost:5000/) - it is working. But lets reconsider. What about large lists? Do we really want to create a new copy of the list for a simple change? What about rendering - does the browser have to rerender all the elements in the list simply because of on new added comment?
+
+Of course not, i would not ask otherwise - so have a look at the next commit where we are doing things in the Polymer way.
+
+## Previous Steps
+
 ### Adding new comments - a first approach
 
 In order to add comments we need to extend our ui. We will extend it with a simple input field to insert a new comment and a simple _send_ button to add the comment to our list. Of course, we are using web components for both the input field and the button.
@@ -27,8 +39,6 @@ document.querySelector('#app').comments
 There they are, all the missing comments you entered previously are in the array but not shown in the view. Obviously our event handler is working just fine, but the binding is not. We must have done something wrong and its not your fault but mine for leading you astray by intent.
 
 Lets see if we get better luck with our next commit.
-
-## Previous Steps
 
 ### A list of comment items
 
