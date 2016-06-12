@@ -69,6 +69,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <paper-button on-tap="sendComment">Send</paper-button>
     <template is="dom-repeat" items="[[comments]]" as="comment">
       <div>[[comment]]</div>
+      <paper-button on-tap="deleteComment">Delete</paper-button>
     </template>
   </template>
 
