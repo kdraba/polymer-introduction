@@ -18,4 +18,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   
   app.comments = ['Hallo Welt!', 'Hallo Karsten!']
+  app.sendComment = function() {    
+    app.comments.push(app.newComment);
+    app.newComment = '';
+  }
 })(document);

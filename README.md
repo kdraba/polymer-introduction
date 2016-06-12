@@ -2,6 +2,34 @@
 
 ## Current Step
 
+### Adding new comments - a first approach
+
+In order to add comments we need to extend our ui. We will extend it with a simple input field to insert a new comment and a simple _send_ button to add the comment to our list. Of course, we are using web components for both the input field and the button.
+
+The [paper-input](https://elements.polymer-project.org/elements/paper-input) element will provide us with a beautiful input element and the [paper-button](https://elements.polymer-project.org/elements/paper-button) element with a beautiful button. To use the two new elements we need to import them in our [app/elements/elements.html](./app/elements/elements.html). In our [app/elements/elements.html](./app/elements/elements.html) we import all the elements we need directly in our [app/index.html](./app/index.html). Imports that we are using only in our own custom elements should be importet there. We are using `<link rel="import" src="..">` here, i.e. the HTML import feature which will handle for us multiple imports of the same file, hence we do not need a centralized file for all imports and each element should declare all the imports it requires itself and no more than that.
+
+We use the two elements in our [app/index.html](./app/index.html) file right above our list of comments. The things happening here are obvious, which is great because that is one of the promises of the declarative approach taken by web components.
+
+We are binding the value of the `paper-input` to `newComment`. This time we are using curly braces to allow a bidirectional binding, i.e. a binding from host to child as well as from child to host. Hence we may provide the `paper-input` child with an inital value and more importantly the `paper-input` child element may write its value into the `newComment` variable of our `#app` host element.
+
+To trigger the addition of the new comment we add an `on-tap` handler to the input. This handler is in the scope of our `#app` element, hence we register the required function there in our [app/index.html](./app/index.html). In the Polymer world you may just want to use `on-tap` instead of `on-click` everywhere, because there is nothing to loose but only gain in that.
+
+With our UI set up take a look at our app at [localhost](http://localhost:5000/). Is it not beautiful? I do not think so! The input field and button are nice, thanks to the material design, but the rest ... ok lets be honest with you from the start ... that is as beautiful as it will get in the course of this introduction ... sorry.
+
+Now lets think about the logic to add the new comment to our list of comments. With our comment list in place this seems straight forward. Simply use the event handler to push the new comment on to the array as done in [app/scripts/app.js](./app/scripts/app.js).
+
+But wait its not working, isn't it? Add as many comments as you like they are not shown in the comment list. Lets have a closer look. Open the development console of your browser and type: 
+
+```javascript
+document.querySelector('#app').comments
+```
+
+There they are, all the missing comments you entered previously are in the array but not shown in the view. Obviously our event handler is working just fine, but the binding is not. We must have done something wrong and its not your fault but mine for leading you astray by intent.
+
+Lets see if we get better luck with our next commit.
+
+## Previous Steps
+
 ### A list of comment items
 
 It is time to do something a bit more interesting. Lets use Polymer to display a simple list of comments.
@@ -21,8 +49,6 @@ Lets peek ahead a bit. Someone asked me: "If Polymer is about custom elements, w
 Feel free to correct me here - i am still learning too.
 
 Now that we got a basic list of comments in place, lets go to the next commit where we start working on a feature to add new comments to our list.
-
-## Previous Steps
 
 ### Our hello-world element - the Polymer way
 
