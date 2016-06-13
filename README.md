@@ -2,6 +2,18 @@
 
 ## Current Step
 
+### Retrieving inital comments via Ajax
+
+To retrieve our initial comments via Ajax we first extract our initial list from [app/scripts/app.js](./app/scripts/app.js) into its own JSON file [app/data.json](./app/data.json). In order to do so, we replace the date object in our comments with a number value for easier (de-)serialization, i.e. unix seconds timestamp. Fortunately we did implement the date format function in a way which is indifferent to that change, so we do not need to change it.
+
+To get the initial comments list we use the [iron-ajax](https://elements.polymer-project.org/elements/iron-ajax) element in our [app/index.html](./app/index.html) file. This is a great example for an element that is not about rendering at all. Instead the element calls for us the provided URL `url="data.json"` and stores its result in the designated format `handle-as="json"` in its `last-response` property where we bind our comments list to. The `auto` attribute tells the element to call the url as soon as its `url` property is initialized or changes. The `iron-ajax` element has many more properties and instead of binding to `last-response` directly, we could have registered a response event handler.
+
+In order to use the `iron-ajax` element in our [app/index.html](./app/index.html) file, we need to import it in [app/elements/elements.html](./app/elements/elements.html).
+
+Starting with the next commit, we will try to make the visualization of our date relative.
+
+## Previous Steps
+
 ### Formatting the date
 
 We are using [Moment.js](http://momentjs.com/) to format the date. First, we need to install the library using [bower](https://bower.io/).
@@ -11,7 +23,7 @@ node_modules/.bin/bower install --save momentjs
 ```
 In our [app/index.html](./app/index.html) file we include the installed library and update the binding to use a function for formatting the date `<span>[[dateFormat(comment.date)]]</span>`. This function, and therefor the binding, will be updated each time the date attribute of the comment changes, or more specifically the date changes and a change event is fired for the path.
 
-## Previous Steps
+The implementation of the function itself in [app/scripts/app.js](./app/scripts/app.js) is straight forward, thanks to the Moment.js library.
 
 ### Adding a date to our comment
 
