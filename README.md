@@ -2,6 +2,20 @@
 
 ## Current Step
 
+### Adding the date to the relative date element
+
+Having set up our `date-relative` element in the last commit, we can now add our date to it. In [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html) we add two properties to our element definition. The first property `date` is the property to hold the date that is to be formatted as a relative date. It is of type `Number`, because we are going to bind our unix timestamp to it. The second property `dateString` will be the formatted string representation of our date. This one is a computed value, hence we define what function should be invoked with which dependencies to compute its value. Again that function will be invoke, whenever one of its dependencies changes and the computed property will be updated with its return value.
+
+The `formatDate` function is simply our previous implementation from [app/scripts/app.js](./app/scripts/app.js) where we removed it.
+
+In order for the `dateString` property to be displayed we bind it in the template of [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html).
+
+There is one more important thing to note here. We moved the import of the Moment.js library from the [app/index.html](./app/index.html) into our element definition. When we moved `formatDate` function, Moment.js was no longer a dependency of our [app/index.html](./app/index.html) but of [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html). We also wrapped the import of the library in its own HTML file: [app/elements/lib-momentjs/lib-momentjs.html](./app/elements/lib-momentjs/lib-momentjs.html). By doing this we ensure that even if the library is included by multiple elements its loaded only once.
+
+Great, we got ourself our first custom element, but the displayed relative time will still be stuck - time to fix that in our next commit.
+
+## Previous Steps
+
 ### Building our own relative date element
 
 Before tackling our relative date update problem we start building our own `date-relative` element.
@@ -12,8 +26,6 @@ In this file we define a `dom-module` with the id of our new element. Within the
 Just like with other elements, we need to import our new element in the [app/elements/elements.html](./app/elements/elements.html) file to use it in our [app/index.html](./app/index.html) file.
 
 Looking at our [app](http://localhost:5000/) now, you can see that our new element is working. Instead of the date we are now displaying the text `relative-date`. We are going to fix this in our next commit.
-
-## Previous Steps
 
 ### Relative date - a first approach
 
