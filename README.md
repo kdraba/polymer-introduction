@@ -2,6 +2,19 @@
 
 ## Current Step
 
+### Building our own relative date element
+
+Before tackling our relative date update problem we start building our own `date-relative` element.
+By convention our new element gets defined in its own [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html) file.
+
+In this file we define a `dom-module` with the id of our new element. Within the module you can find the template of our element including the style of the document and its HTML - so far its HTML is simply the text `relative-date`. In addition to the template we have a script block in our module that invokes the Polymer function with an object that defines our element. We will use this object in our next commit to define the properties and functions of the element. For now the object only defines the `is` property to designate the element we are defining.
+
+Just like with other elements, we need to import our new element in the [app/elements/elements.html](./app/elements/elements.html) file to use it in our [app/index.html](./app/index.html) file.
+
+Looking at our [app](http://localhost:5000/) now, you can see that our new element is working. Instead of the date we are now displaying the text `relative-date`. We are going to fix this in our next commit.
+
+## Previous Steps
+
 ### Relative date - a first approach
 
 Displaying a relative date is easy with Moment.js. We simply use [fromNow](http://momentjs.com/docs/#/displaying/fromnow/) in our date formatting function.
@@ -11,8 +24,6 @@ If you take a look at our app [app/scripts/app.js](./app/scripts/app.js) now, yo
 What is happening? Our binding function for formatting the date `[[dateFormat(comment.date)]]` is updated whenever the date of the comment changes. But in case of our relative date it is not the date that changes, but its display. Hence, our binding is never updated.
 
 To better tackle that problem, we are going to put the relative date display into its own element in our next commit.
-
-## Previous Steps
 
 ### Retrieving inital comments via Ajax
 
