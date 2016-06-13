@@ -18,17 +18,43 @@
 
       Polymer({
         is: 'date-relative',
+        
         properties: {
           date: {
             type: Number
           },
           dateString: {
             type: String,
-            computed: 'formatDate(date)'
+            computed: 'formatDate(date, lastUpdate)'
+          },
+          lastUpdate: {
+            type: Number,
+            readOnly: true,
+            reflectToAttribute: true
           }
         },
+        
         formatDate: function(date) {
           return moment(date).fromNow();
+        },
+        
+        attached: function() {
+          var component = this;
+          
+          if (component._clearUpdateInterval) {
+            component._clearUpdateInterval();
+          };
+          
+          component._setLastUpdate(Date.now());
+          var intervalId = setInterval(function() {
+            component._setLastUpdate(Date.now());
+          }, 1000);
+          component._clearUpdateInterval = function() { clearInterval(intervalId); };
+        },
+        
+        detached: function() {
+          var component = this;
+          component._clearUpdateInterval();
         }
       });
     })();

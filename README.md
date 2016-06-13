@@ -2,6 +2,20 @@
 
 ## Current Step
 
+### Dynamically updating the displayed relative date
+
+In order to update the displayed date we need to force the reevaluation of the computed binding in [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html). The binding will be reevaluated as soon as one of its dependencies changes. So - what is the plan?
+
+We add a new property `lastUpdate` to our element. This property is read only, i.e. it can not be set by a binding. Then we add this property to the dependencies of our computed binding function. Finally we start a interval as soon as the element is added to the DOM and set the value of the `lastUpdate` property to the current timestamp on each intervall. This way the value of `lastUpdate` changes with the interval and our computed binding is reevaluated.
+
+We use the `attached` and `detached` [lifecycle callbacks](https://www.polymer-project.org/1.0/docs/devguide/registering-elements#lifecycle-callbacks) to start and stop the interval whenever the lement is added or removed from the DOM. In case of the `attached` callback we stop any previously started timer using a function on the element. Then we start the new interval and register a new function to stop this interval on the element. In case of the `detached` callback we simply invoke that function to stop the interval.
+
+Now take another look at our [app](http://localhost:5000/). Create a date and watch the relative date changing as time goes by. Also open the DOM explorer of your browser and have a look at one of our `date-relative` elements. You should see that the current value of the `lastUpdate` property is always reflected int the attribute of the element, that is what `reflectToAttribute` is for.
+
+Next we are going to extract the interval logic into its own `date-tick` element.
+
+## Previous Steps
+
 ### Adding the date to the relative date element
 
 Having set up our `date-relative` element in the last commit, we can now add our date to it. In [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html) we add two properties to our element definition. The first property `date` is the property to hold the date that is to be formatted as a relative date. It is of type `Number`, because we are going to bind our unix timestamp to it. The second property `dateString` will be the formatted string representation of our date. This one is a computed value, hence we define what function should be invoked with which dependencies to compute its value. Again that function will be invoke, whenever one of its dependencies changes and the computed property will be updated with its return value.
@@ -13,8 +27,6 @@ In order for the `dateString` property to be displayed we bind it in the templat
 There is one more important thing to note here. We moved the import of the Moment.js library from the [app/index.html](./app/index.html) into our element definition. When we moved `formatDate` function, Moment.js was no longer a dependency of our [app/index.html](./app/index.html) but of [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html). We also wrapped the import of the library in its own HTML file: [app/elements/lib-momentjs/lib-momentjs.html](./app/elements/lib-momentjs/lib-momentjs.html). By doing this we ensure that even if the library is included by multiple elements its loaded only once.
 
 Great, we got ourself our first custom element, but the displayed relative time will still be stuck - time to fix that in our next commit.
-
-## Previous Steps
 
 ### Building our own relative date element
 
