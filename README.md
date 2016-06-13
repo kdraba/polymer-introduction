@@ -2,6 +2,18 @@
 
 ## Current Step
 
+### Relative date - a first approach
+
+Displaying a relative date is easy with Moment.js. We simply use [fromNow](http://momentjs.com/docs/#/displaying/fromnow/) in our date formatting function.
+
+If you take a look at our app [app/scripts/app.js](./app/scripts/app.js) now, you can see that the date is now relativ. Are we done yet? Not quiet. Add a new comment and wait for the relative date to change - but do not wait too long - because it is simply not working yet.
+
+What is happening? Our binding function for formatting the date `[[dateFormat(comment.date)]]` is updated whenever the date of the comment changes. But in case of our relative date it is not the date that changes, but its display. Hence, our binding is never updated.
+
+To better tackle that problem, we are going to put the relative date display into its own element in our next commit.
+
+## Previous Steps
+
 ### Retrieving inital comments via Ajax
 
 To retrieve our initial comments via Ajax we first extract our initial list from [app/scripts/app.js](./app/scripts/app.js) into its own JSON file [app/data.json](./app/data.json). In order to do so, we replace the date object in our comments with a number value for easier (de-)serialization, i.e. unix seconds timestamp. Fortunately we did implement the date format function in a way which is indifferent to that change, so we do not need to change it.
@@ -11,8 +23,6 @@ To get the initial comments list we use the [iron-ajax](https://elements.polymer
 In order to use the `iron-ajax` element in our [app/index.html](./app/index.html) file, we need to import it in [app/elements/elements.html](./app/elements/elements.html).
 
 Starting with the next commit, we will try to make the visualization of our date relative.
-
-## Previous Steps
 
 ### Formatting the date
 
