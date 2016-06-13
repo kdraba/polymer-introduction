@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../lib-momentjs/lib-momentjs.html">
 
 <dom-module id="date-relative">
   <template>
@@ -8,7 +9,7 @@
       }
     </style>
 
-    date-relative
+    [[dateString]]
   </template>
 
   <script>
@@ -16,7 +17,19 @@
       'use strict';
 
       Polymer({
-        is: 'date-relative'
+        is: 'date-relative',
+        properties: {
+          date: {
+            type: Number
+          },
+          dateString: {
+            type: String,
+            computed: 'formatDate(date)'
+          }
+        },
+        formatDate: function(date) {
+          return moment(date).fromNow();
+        }
       });
     })();
   </script>
