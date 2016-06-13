@@ -65,6 +65,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- endbuild -->
   
   <template is="dom-bind" id="app">
+    <iron-ajax auto url="data.json" handle-as="json" last-response="{{comments}}"></iron-ajax>
+    
     <paper-input placeholder="Kommentar" value="{{newComment}}"></paper-input>
     <paper-button on-tap="sendComment">Send</paper-button>
     <template is="dom-repeat" items="[[comments]]" as="comment">
