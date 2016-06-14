@@ -16,6 +16,13 @@
       Polymer({
         is: 'date-tick',
         
+        properties: {
+          lastUpdate: {
+            type: Number,
+            reflectToAttribute: true
+          }
+        },
+                
         attached: function() {
           var component = this;
           
@@ -23,9 +30,9 @@
             component._clearUpdateInterval();
           };
           
-          component.fire('tick', Date.now());
+          component.lastUpdate = Date.now();
           var intervalId = setInterval(function() {
-            component.fire('tick', Date.now());
+            component.lastUpdate = Date.now();
           }, 1000);
           component._clearUpdateInterval = function() { clearInterval(intervalId); };
         },
