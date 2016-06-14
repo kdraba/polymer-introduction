@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../lib-momentjs/lib-momentjs.html">
+<link rel="import" href="../tick-behavior/tick-behavior.html">
 
 <dom-module id="date-relative">
   <template>
@@ -13,7 +14,7 @@
   </template>
 
   <script>
-    (function() {
+    (function(context) {
       'use strict';
 
       Polymer({
@@ -26,17 +27,15 @@
           dateString: {
             type: String,
             computed: 'formatDate(date, tick)'
-          },
-          tick: {
-            type: Number,
-            reflectToAttribute: true
           }
         },
+        
+        behaviors: [context.TickBehavior],
         
         formatDate: function(date) {
           return moment(date).fromNow();
         }
       });
-    })();
+    })(this);
   </script>
 </dom-module>

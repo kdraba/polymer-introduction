@@ -2,13 +2,23 @@
 
 ## Current Step
 
+### Creating a tick behavior
+
+Both of our elements `app-tick` and `date-relative` share the same `tick` property. We can put this property in its own behavior. This way the property can be reused in every other element.
+
+As you can see in [app/elements/tick-behavior/tick-behavior.html](./app/elements/tick-behavior/tick-behavior.html), a behavior is nothing more than a element definition except that you can not define a template associated with the behavior. As you can see in [app/elements/app-tick/app-tick.html](./app/elements/app-tick/app-tick.html) and [app/elements/date-relative/date-relative.html], the inclusion of a behavior is quiet easy and we can remove the duplicate property definition from the two elements.
+
+This is a very simple behavior, but i think you get the idea. A behavior can define everything an element definition does, i.e. properties, functions, lifecycle callbacks and observers.
+
+While our app will never be pretty, we are going to do some styling with our next commit.
+
+## Previous Steps
+
 ### Using a multi property observer to watch for changes of the interval
 
 In addition to register an observer directly on a property, you can register multi property observer on your element. We do this in [app/elements/app-tick/app-tick.html](./app/elements/app-tick/app-tick.html) by registering a function `_updateInterval` that is invoked whenever the `interval` or the state of `isAttached` changes. As a side effect, we can now remove the attached callback from the `app-tick` element definition.
 
 With our next commit, we are doing another optimization by putting the `tick` property into a reusable behavior.
-
-## Previous Steps
 
 ### Using a property observer to watch for changes of the interval
 

@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../tick-behavior/tick-behavior.html">
 
 <dom-module id="app-tick">
   <template>
@@ -10,25 +11,21 @@
   </template>
 
   <script>
-    (function() {
+    (function(context) {
       'use strict';
 
       Polymer({
         is: 'app-tick',
         
         properties: {
-          tick: {
-            type: Number,
-            notify: true,
-            reflectToAttribute: true,
-            value: 0
-          },
           interval: {
             type: Number,
             reflectToAttribute: true,
             value: 1000
           }
         },
+        
+        behaviors: [ context.TickBehavior ],
         
         observers: ['_updateInterval(interval, isAttached)'],
         
@@ -48,6 +45,6 @@
           }
         }
       });
-    })();
+    })(this);
   </script>
 </dom-module>
