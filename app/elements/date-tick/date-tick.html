@@ -1,0 +1,40 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="date-tick">
+  <template>
+    <style>
+      :host {
+        display: none;
+      }
+    </style>
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'date-tick',
+        
+        attached: function() {
+          var component = this;
+          
+          if (component._clearUpdateInterval) {
+            component._clearUpdateInterval();
+          };
+          
+          component.fire('tick', Date.now());
+          var intervalId = setInterval(function() {
+            component.fire('tick', Date.now());
+          }, 1000);
+          component._clearUpdateInterval = function() { clearInterval(intervalId); };
+        },
+        
+        detached: function() {
+          var component = this;
+          component._clearUpdateInterval();
+        }
+      });
+    })();
+  </script>
+</dom-module>

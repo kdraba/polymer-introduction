@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../lib-momentjs/lib-momentjs.html">
+<link rel="import" href="../date-tick/date-tick.html">
 
 <dom-module id="date-relative">
   <template>
@@ -9,6 +10,7 @@
       }
     </style>
 
+    <date-tick on-tick="_updateLastUpdateFromTickEvent"></date-tick>
     [[dateString]]
   </template>
 
@@ -38,23 +40,9 @@
           return moment(date).fromNow();
         },
         
-        attached: function() {
+        _updateLastUpdateFromTickEvent: function(tickEvent) {
           var component = this;
-          
-          if (component._clearUpdateInterval) {
-            component._clearUpdateInterval();
-          };
-          
-          component._setLastUpdate(Date.now());
-          var intervalId = setInterval(function() {
-            component._setLastUpdate(Date.now());
-          }, 1000);
-          component._clearUpdateInterval = function() { clearInterval(intervalId); };
-        },
-        
-        detached: function() {
-          var component = this;
-          component._clearUpdateInterval();
+          component._setLastUpdate(tickEvent.detail);
         }
       });
     })();
