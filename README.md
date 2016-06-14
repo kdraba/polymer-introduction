@@ -2,6 +2,17 @@
 
 ## Current Step
 
+### Making the interval configurable
+
+Making the `app-tick` interval configurable should be easy. We add an interval property to our `app-tick` element in [app/elements/app-tick/app-tick.html](./app/elements/app-tick/app-tick.html) and use its value in our `attached` handler to start the interval.
+
+Now open our [app](http://localhost:5000/) and have a look at the `app-tick` element in the DOM explorer of your browser. Both attributes, interval and tick should be present as both are reflected to the element and our tick value should be ticking away.
+O.k. Lets change the interval and be faster. In your browser console run `document.querySelector('app-tick').interval = 100`. The tick should now be running at lightning speed. No - its not? Lets try to slow down the ticking using the command `document.querySelector('app-tick').interval = 10000`. The tick does not slow down either? Sorry, i failed you again.
+
+Lets see if we can do something about that with our next commit.
+
+## Previous Steps
+
 ### Changing the semantics from date-tick to app-tick
 
 Having extracted our `date-tick` element and made it independent of the `date-relative` element it is time to reconsider its semantic. We are not really interested in the actual date of the `lastUpdate` property and are using the element simply for its interval. So lets transform the `date-tick` element into an `app-tick` element as done in [app/elements/app-tick/app-tick.html](./app/elements/app-tick/app-tick.html).
@@ -9,8 +20,6 @@ Having extracted our `date-tick` element and made it independent of the `date-re
 There is not much to do for that. We are renaming the `lastUpdate` property in both of our elements to `tick`. In [app/elements/app-tick/app-tick.html](./app/elements/app-tick/app-tick.html) we are assigning an incremental value to the `tick` property instead of the current date and set the default value of our `tick` to 0.
 
 Its nice to have a `app-tick` element for ourselves. But if we want others to use it, we should make the interval configurable.
-
-## Previous Steps
 
 ### Getting date-tick and date-relative to work again
 
