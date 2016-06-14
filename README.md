@@ -2,6 +2,18 @@
 
 ## Current Step
 
+### Using a property observer to watch for changes of the interval
+
+In our previous commit we did set up an interval property for our `app-tick` element, but the interval of our tick did not change when we changed the interval. The reason is that we are starting the interval whenever the element is attached to the DOM but do not restart it whenever the interval changes.
+
+Take a look at our new [app/elements/app-tick/app-tick.html](./app/elements/app-tick/app-tick.html). In order to restart the interval whenever the `interval` property changes, we extract the code to start the interval and put it in its own function `_createInterval`. Then we register this function as an observer on the `interval` property in addition to invoking it in our `attached` handler.
+
+Thats it. Start the [app](http://localhost:5000/), take a look at the `app-tick` element in your DOM explorer and change the interval using `document.querySelector('app-tick').interval = 100` and `document.querySelector('app-tick').interval = 10000`. This time everything should be fine. Problem solved.
+
+Instead of a property observer function we could have used a multi property observer function. We will do this in our next commit.
+
+## Previous Steps
+
 ### Making the interval configurable
 
 Making the `app-tick` interval configurable should be easy. We add an interval property to our `app-tick` element in [app/elements/app-tick/app-tick.html](./app/elements/app-tick/app-tick.html) and use its value in our `attached` handler to start the interval.
@@ -10,8 +22,6 @@ Now open our [app](http://localhost:5000/) and have a look at the `app-tick` ele
 O.k. Lets change the interval and be faster. In your browser console run `document.querySelector('app-tick').interval = 100`. The tick should now be running at lightning speed. No - its not? Lets try to slow down the ticking using the command `document.querySelector('app-tick').interval = 10000`. The tick does not slow down either? Sorry, i failed you again.
 
 Lets see if we can do something about that with our next commit.
-
-## Previous Steps
 
 ### Changing the semantics from date-tick to app-tick
 
