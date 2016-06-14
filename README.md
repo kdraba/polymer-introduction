@@ -2,6 +2,14 @@
 
 ## Current Step
 
+### Using a multi property observer to watch for changes of the interval
+
+In addition to register an observer directly on a property, you can register multi property observer on your element. We do this in [app/elements/app-tick/app-tick.html](./app/elements/app-tick/app-tick.html) by registering a function `_updateInterval` that is invoked whenever the `interval` or the state of `isAttached` changes. As a side effect, we can now remove the attached callback from the `app-tick` element definition.
+
+With our next commit, we are doing another optimization by putting the `tick` property into a reusable behavior.
+
+## Previous Steps
+
 ### Using a property observer to watch for changes of the interval
 
 In our previous commit we did set up an interval property for our `app-tick` element, but the interval of our tick did not change when we changed the interval. The reason is that we are starting the interval whenever the element is attached to the DOM but do not restart it whenever the interval changes.
@@ -11,8 +19,6 @@ Take a look at our new [app/elements/app-tick/app-tick.html](./app/elements/app-
 Thats it. Start the [app](http://localhost:5000/), take a look at the `app-tick` element in your DOM explorer and change the interval using `document.querySelector('app-tick').interval = 100` and `document.querySelector('app-tick').interval = 10000`. This time everything should be fine. Problem solved.
 
 Instead of a property observer function we could have used a multi property observer function. We will do this in our next commit.
-
-## Previous Steps
 
 ### Making the interval configurable
 
