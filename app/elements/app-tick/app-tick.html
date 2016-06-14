@@ -22,6 +22,11 @@
             notify: true,
             reflectToAttribute: true,
             value: 0
+          },
+          interval: {
+            type: Number,
+            reflectToAttribute: true,
+            value: 1000
           }
         },
                 
@@ -35,7 +40,7 @@
           component.tick = component.tick + 1;
           var intervalId = setInterval(function() {
             component.tick = component.tick + 1;
-          }, 1000);
+          }, component.interval);
           component._clearUpdateInterval = function() { clearInterval(intervalId); };
         },
         
