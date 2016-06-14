@@ -26,29 +26,20 @@
           interval: {
             type: Number,
             reflectToAttribute: true,
-            value: 1000,
-            observer: '_createInterval'
+            value: 1000
           }
         },
-                
-        attached: function() {
-          var component = this;
-          component._createInterval.apply(component);
-        },
         
-        detached: function() {
-          var component = this;
-          component._clearUpdateInterval();
-        },
+        observers: ['_updateInterval(interval, isAttached)'],
         
-        _createInterval: function() {
+        _updateInterval: function(interval, isAttached) {
           var component = this;
           
-          if (component.isAttached) {          
-            if (component._clearUpdateInterval) {
-              component._clearUpdateInterval();
-            };
+          if (component._clearUpdateInterval) {
+            component._clearUpdateInterval();
+          };
 
+          if ((interval || interval === 0) && isAttached) {
             component.tick = component.tick + 1;
             var intervalId = setInterval(function() {
               component.tick = component.tick + 1;
