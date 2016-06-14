@@ -2,6 +2,20 @@
 
 ## Current Step
 
+### Making date-tick and date-relative independent of each other
+
+If we are going to pull the `date-tick` element out of the `date-relative` element we need a way for the `date-relative` element to be notified when the `date-tick` interval changes. We could use the `tick` event we set up earlier, but as we have a one to many relationship and can only define a single handler declaratively on the `date-tick` element, we use an easier way: data binding.
+
+We add the same `lastUpdate` property to our `date-tick` element that we defined in our `date-relative` element and remove the event sender and handler code from [app/elements/date-relative/date-tick.html](./app/elements/date-relative/date-tick.html) and [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html) respectively.
+
+Next, we add our `date-tick` element to the [app/index.html](./app/index.html) file and set up the binding between the `last-update` attribute of the `date-tick` and the `last-update` attribute of the individual `date-relative` elements.
+
+Done. Have a look at our [app](http://localhost:5000/) - the update of the displayed relative date is not working anymore? You are right!
+
+Lets see in our next commit, what we can do about that.
+
+## Previous Steps
+
 ### Extracting a date-tick element
 
 Displaying a relative date and updating the display in a interval are two different things. Hence we are going to extract the logic to update the display in its own element. Therefore we create the `date-tick` element in [app/elements/date-relative/date-tick.html](./app/elements/date-relative/date-tick.html).
@@ -15,8 +29,6 @@ Our `date-relative` is now a composed element with child to host communication u
 Composition is an easy way to build more complex elements out of simple ones. But is this the best solution to our problem. With our current solution each `relative-date` in our list of comments has its own interval. Would it not be better to have a single interval for all comments?
 
 Lets do that in our next commit.
-
-## Previous Steps
 
 ### Dynamically updating the displayed relative date
 

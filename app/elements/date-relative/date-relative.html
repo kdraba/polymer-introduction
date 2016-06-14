@@ -1,6 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../lib-momentjs/lib-momentjs.html">
-<link rel="import" href="../date-tick/date-tick.html">
 
 <dom-module id="date-relative">
   <template>
@@ -10,7 +9,6 @@
       }
     </style>
 
-    <date-tick on-tick="_updateLastUpdateFromTickEvent"></date-tick>
     [[dateString]]
   </template>
 
@@ -38,11 +36,6 @@
         
         formatDate: function(date) {
           return moment(date).fromNow();
-        },
-        
-        _updateLastUpdateFromTickEvent: function(tickEvent) {
-          var component = this;
-          component._setLastUpdate(tickEvent.detail);
         }
       });
     })();
