@@ -2,6 +2,22 @@
 
 ## Current Step
 
+### Extracting a date-tick element
+
+Displaying a relative date and updating the display in a interval are two different things. Hence we are going to extract the logic to update the display in its own element. Therefore we create the `date-tick` element in [app/elements/date-relative/date-tick.html](./app/elements/date-relative/date-tick.html).
+
+The element is mainly a copy of the attached and detached code of our `date-relative` element, but a few things are different. The new `date-tick` element is not displayed itself and therefore its `display` set to `none`. Instead of updating any property the element simply fires an `tick` event on each interval.
+
+We adjust our [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html) accordingly. First we remove the attached and detached callbacks. Second we include the new `date-tick` element and set up a handler for its `tick` event. This handler is where we update our `lastUpdate` property.
+
+Our `date-relative` is now a composed element with child to host communication using custom events. Great. Have a look at our [app](http://localhost:5000/).
+
+Composition is an easy way to build more complex elements out of simple ones. But is this the best solution to our problem. With our current solution each `relative-date` in our list of comments has its own interval. Would it not be better to have a single interval for all comments?
+
+Lets do that in our next commit.
+
+## Previous Steps
+
 ### Dynamically updating the displayed relative date
 
 In order to update the displayed date we need to force the reevaluation of the computed binding in [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html). The binding will be reevaluated as soon as one of its dependencies changes. So - what is the plan?
@@ -13,8 +29,6 @@ We use the `attached` and `detached` [lifecycle callbacks](https://www.polymer-p
 Now take another look at our [app](http://localhost:5000/). Create a date and watch the relative date changing as time goes by. Also open the DOM explorer of your browser and have a look at one of our `date-relative` elements. You should see that the current value of the `lastUpdate` property is always reflected int the attribute of the element, that is what `reflectToAttribute` is for.
 
 Next we are going to extract the interval logic into its own `date-tick` element.
-
-## Previous Steps
 
 ### Adding the date to the relative date element
 
