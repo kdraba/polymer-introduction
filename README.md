@@ -2,6 +2,16 @@
 
 ## Current Step
 
+### Changing the semantics from date-tick to app-tick
+
+Having extracted our `date-tick` element and made it independent of the `date-relative` element it is time to reconsider its semantic. We are not really interested in the actual date of the `lastUpdate` property and are using the element simply for its interval. So lets transform the `date-tick` element into an `app-tick` element as done in [app/elements/app-tick/app-tick.html](./app/elements/app-tick/app-tick.html).
+
+There is not much to do for that. We are renaming the `lastUpdate` property in both of our elements to `tick`. In [app/elements/app-tick/app-tick.html](./app/elements/app-tick/app-tick.html) we are assigning an incremental value to the `tick` property instead of the current date and set the default value of our `tick` to 0.
+
+Its nice to have a `app-tick` element for ourselves. But if we want others to use it, we should make the interval configurable.
+
+## Previous Steps
+
 ### Getting date-tick and date-relative to work again
 
 In order to get our `date-tick` and `date-relative` binding to work again, we have to do two more things. 
@@ -11,8 +21,6 @@ First: when we defiend our `date-relative` element earlier in [app/elements/date
 Second: bindings are updated based on events. The `date-tick` element defined in [app/elements/date-relative/date-tick.html](./app/elements/date-relative/date-tick.html) is changing the value of its `lastUpdate` property, but it also needs to fire an event for other elements to update their values based on that change. To enable that event we need to set the property to `notify: true`.
 
 Now have a look at our [app](http://localhost:5000/). Everything should be working now. So lets proceed to the next commit.
-
-## Previous Steps
 
 ### Making date-tick and date-relative independent of each other
 
