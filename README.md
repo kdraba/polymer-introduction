@@ -2,6 +2,18 @@
 
 ## Current Step
 
+### Getting date-tick and date-relative to work again
+
+In order to get our `date-tick` and `date-relative` binding to work again, we have to do two more things. 
+
+First: when we defiend our `date-relative` element earlier in [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html), we made the `lastUpdate` property read only in order to ensure, that it is not changed through any binding. Now we want it to change through our set up binding, hence we need to remove that restriction.
+
+Second: bindings are updated based on events. The `date-tick` element defined in [app/elements/date-relative/date-tick.html](./app/elements/date-relative/date-tick.html) is changing the value of its `lastUpdate` property, but it also needs to fire an event for other elements to update their values based on that change. To enable that event we need to set the property to `notify: true`.
+
+Now have a look at our [app](http://localhost:5000/). Everything should be working now. So lets proceed to the next commit.
+
+## Previous Steps
+
 ### Making date-tick and date-relative independent of each other
 
 If we are going to pull the `date-tick` element out of the `date-relative` element we need a way for the `date-relative` element to be notified when the `date-tick` interval changes. We could use the `tick` event we set up earlier, but as we have a one to many relationship and can only define a single handler declaratively on the `date-tick` element, we use an easier way: data binding.
@@ -13,8 +25,6 @@ Next, we add our `date-tick` element to the [app/index.html](./app/index.html) f
 Done. Have a look at our [app](http://localhost:5000/) - the update of the displayed relative date is not working anymore? You are right!
 
 Lets see in our next commit, what we can do about that.
-
-## Previous Steps
 
 ### Extracting a date-tick element
 
