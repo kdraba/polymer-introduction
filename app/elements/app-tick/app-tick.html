@@ -26,27 +26,35 @@
           interval: {
             type: Number,
             reflectToAttribute: true,
-            value: 1000
+            value: 1000,
+            observer: '_createInterval'
           }
         },
                 
         attached: function() {
           var component = this;
-          
-          if (component._clearUpdateInterval) {
-            component._clearUpdateInterval();
-          };
-          
-          component.tick = component.tick + 1;
-          var intervalId = setInterval(function() {
-            component.tick = component.tick + 1;
-          }, component.interval);
-          component._clearUpdateInterval = function() { clearInterval(intervalId); };
+          component._createInterval.apply(component);
         },
         
         detached: function() {
           var component = this;
           component._clearUpdateInterval();
+        },
+        
+        _createInterval: function() {
+          var component = this;
+          
+          if (component.isAttached) {          
+            if (component._clearUpdateInterval) {
+              component._clearUpdateInterval();
+            };
+
+            component.tick = component.tick + 1;
+            var intervalId = setInterval(function() {
+              component.tick = component.tick + 1;
+            }, component.interval);
+            component._clearUpdateInterval = function() { clearInterval(intervalId); };
+          }
         }
       });
     })();
