@@ -1,6 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
-<dom-module id="date-tick">
+<dom-module id="app-tick">
   <template>
     <style>
       :host {
@@ -14,13 +14,14 @@
       'use strict';
 
       Polymer({
-        is: 'date-tick',
+        is: 'app-tick',
         
         properties: {
-          lastUpdate: {
+          tick: {
             type: Number,
             notify: true,
-            reflectToAttribute: true
+            reflectToAttribute: true,
+            value: 0
           }
         },
                 
@@ -31,9 +32,9 @@
             component._clearUpdateInterval();
           };
           
-          component.lastUpdate = Date.now();
+          component.tick = component.tick + 1;
           var intervalId = setInterval(function() {
-            component.lastUpdate = Date.now();
+            component.tick = component.tick + 1;
           }, 1000);
           component._clearUpdateInterval = function() { clearInterval(intervalId); };
         },
