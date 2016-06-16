@@ -15,7 +15,7 @@
       }
     </style>
 
-    <span class$="[[_freshClass(date, tick)]]">[[dateString]]</span>
+    <span class$="[[_freshClass(freshnessMillis, date, tick)]]">[[dateString]]</span>
   </template>
 
   <script>
@@ -32,6 +32,10 @@
           dateString: {
             type: String,
             computed: 'formatDate(date, tick)'
+          },
+          freshnessMillis: {
+            type: Number,
+            value: 30 * 1000
           }
         },
         
@@ -41,8 +45,8 @@
           return moment(date).fromNow();
         },
         
-        _freshClass: function(date) {
-          return Date.now() - date < 30000 ? 'fresh' : '';
+        _freshClass: function(freshnessMillis, date) {
+          return Date.now() - date < freshnessMillis ? 'fresh' : '';
         }
       });
     })(this);
