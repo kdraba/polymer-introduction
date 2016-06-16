@@ -2,13 +2,25 @@
 
 ## Current Step
 
+### Making the color of fresh comments configurable
+
+Polymer as some great features for making the style of elements configurable. We are going to use [custom CSS propertiess](https://www.polymer-project.org/1.0/docs/devguide/styling#xscope-styling-details) in our example.
+
+We replace the fixed dark red color in [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html) with a `var` expression that defines the custom CSS property `--freshness-color` with its default color set to dark red.
+
+This new CSS property can now be set by the host of the element in a custom style. E.g. in [app/index.html](./app/index.html) we are setting it to dark blue.
+
+Custom CSS properties are a neat feature. But what if we want also change the font style from bold to italic or change the font size. Creating a custom property for each and every possible aspect of the style would be tedious.
+
+Fortunately there is another way, as we will see in our next commit.
+
+## Previous Steps
+
 ### Making the freshness configurable
 
 We make the freshness of a commit configurable by putting the duration in its own property in [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html). This should be straight forward by now and there is not much to say about it. We just add the property to the element and add it as a dependency to our function to calculate the class. This way the class is reevaluated as soon as the freshness configuration, the set date or the tick changes.
 
 Not everybody will be happy with our dark red color for new commits. Hence we are going to make the color configurable too, in our next commit.
-
-## Previous Steps
 
 ### Updating the relative date element classes with each tick
 
