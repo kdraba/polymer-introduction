@@ -8,9 +8,14 @@
       :host {
         display: inline-block;
       }
+      
+      .fresh {
+        color: darkred;
+        font-weight: bold;
+      }
     </style>
 
-    [[dateString]]
+    <span class$="[[_freshClass(date)]]">[[dateString]]</span>
   </template>
 
   <script>
@@ -34,6 +39,10 @@
         
         formatDate: function(date) {
           return moment(date).fromNow();
+        },
+        
+        _freshClass: function(date) {
+          return Date.now() - date < 30000 ? 'fresh' : '';
         }
       });
     })(this);

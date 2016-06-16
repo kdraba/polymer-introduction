@@ -2,6 +2,20 @@
 
 ## Current Step
 
+### Adding a special class to fresh comments
+
+This time we are going to give the relative date of fresh comments a special look by adding a class to them.
+
+In our template in [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html) we wrap the date in a `span` element and bind the standard element attribute `classs` to a new function. As we are binding to a standard element attribute we use the special [https://www.polymer-project.org/1.0/docs/devguide/data-binding#native-binding]($= assignment). The new function simply calculates the `class` value depending on how far the given date is in the past and returns it as a string.
+
+In our `style` we give fresh dates a distinct look by coloring them dark red and making them bold.
+
+And again, take a look at our [app](http://localhost:5000/) and add a new comment. The date of the comment is styled in dark red and is bold. Our `class` is working. You can see that in your browsers DOM explorer. But just as with our relative date text, the class is not updated, i.e. it is not removed from the element as time passes by.
+
+Do you know what our code is missing? So lets move on to our next commit.
+
+## Previous Steps
+
 ### Creating a tick behavior
 
 Both of our elements `app-tick` and `date-relative` share the same `tick` property. We can put this property in its own behavior. This way the property can be reused in every other element.
@@ -11,8 +25,6 @@ As you can see in [app/elements/tick-behavior/tick-behavior.html](./app/elements
 This is a very simple behavior, but i think you get the idea. A behavior can define everything an element definition does, i.e. properties, functions, lifecycle callbacks and observers.
 
 While our app will never be pretty, we are going to do some styling with our next commit.
-
-## Previous Steps
 
 ### Using a multi property observer to watch for changes of the interval
 
