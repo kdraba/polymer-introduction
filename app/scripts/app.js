@@ -16,8 +16,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
   var app = document.querySelector('#app');
   
-  app.sendComment = function() {  
-    app.splice('comments', 0, 0, {message: app.newComment, date: Date.now()});
+  app.sendComment = function() {
+    var number = app.comments.length > 0 ? app.comments[app.comments.length - 1].number + 1 : 0;
+    app.push('comments', {message: app.newComment, date: Date.now(), number: number});
     app.newComment = '';
   }
   app.deleteComment = function(event) {
