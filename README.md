@@ -2,6 +2,18 @@
 
 ## Current Step
 
+### Adding and removing comments from the inverted list
+
+With our last changes the inverted list is not updated whenver we add or remove comments from the original list. This is not a big surprise as we know that adding and removing comments from the original list does not change the list itself. Our initial observer only watches for those changes, but the Polymer binding system allows us to watch for deep property and array changes to.
+
+To watch for changes of the original list we are adding an additional observer in [app/elements/list-inverse/list-inverse.html](./app/elements/list-inverse/list-inverse.html) that watches on [array splices](https://www.polymer-project.org/1.0/docs/devguide/properties#array-observation). Our new `_updateInverseList` is now invoked whenever items are added or removed from the original list. Within that function we take a look at each splice and remove or add elements those elements from the inverse list that have been added or removed from the original list. This way we translate the splices of the original list into splices of our inverted list.
+
+What is the point of that? The event based binding system allows you to build efficient bindings between complex datastructure by simply converting changes on a source structure to changes on the target structure.
+
+This concludes the Polymer introduction for now. Maybe there is more to come in the future.
+
+## Previous Steps
+
 ### Inverting the comment list
 
 We could simply use the [sort feature of dom-repeat](https://www.polymer-project.org/1.0/docs/devguide/templates#filtering-and-sorting-lists) to display our comments in inverted order. But sometimes there are use cases where you want to use an inverted list in mutiple bindings, so we are going to create our own new `list-inverse` element instead. This provides us with a opportunity to learn something more about the events that drive the Polymer binding system.
@@ -13,8 +25,6 @@ The initialization of our inverted list is easy. Whenever the original list chan
 In our [app/index.html](./app/index.html) we are inserting our new element and bind our `dom-repeat` to the inverted list instead of the original one. And do not forget to import the `list-invere` element in our [app/elements/elements.html](./app/elements/elements.html) as we are using it directly in [app/index.html](./app/index.html).
 
 So lets have a look at our [app](http://localhost:5000/). Everything seems fine. Our comment list is now displayed in its inverted order again, i.e. newest comments at the top and oldest at the bottom. But we broke something - again. Adding and deleting comments are not working. You guessed it - we are going to fix this with our next commit.
-
-## Previous Steps
 
 ### Adding a number to each comment
 
