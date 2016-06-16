@@ -80,7 +80,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     <paper-input placeholder="Kommentar" value="{{newComment}}"></paper-input>
     <paper-button on-tap="sendComment">Send</paper-button>
-    <template is="dom-repeat" items="[[comments]]" as="comment">
+    <list-inverse list="[[comments]]" inverse-list="{{invertedComments}}"></list-inverse>
+    <template is="dom-repeat" items="[[invertedComments]]" as="comment">
       <div>[[comment.number]] <date-relative date="[[comment.date]]" tick="[[tick]]"></date-relative> [[comment.message]]</div>
       <paper-button on-tap="deleteComment">Delete</paper-button>
     </template>
