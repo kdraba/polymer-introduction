@@ -2,6 +2,18 @@
 
 ## Current Step
 
+### Using CSS mixins to theme our application
+
+Allowing others to change the color of our fresh comments dates is not enough. We also want them to be able to change other aspects of the style. We are using [CSS mixins](https://www.polymer-project.org/1.0/docs/devguide/styling#custom-css-mixins) for this. Using CSS mixins is easy.
+
+We define the mixin and its point of inclusion point in the style section of our [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html) by use of the `@apply` function and the name of the mixin.
+
+Just like with custom CSS properties, the host of our element can now define the values of the mixin. For our app we do this in [app/index.html](./app/index.html). All those values are merged into the default style of our element.
+
+Now that our fresh comments have a normal font weight and are italic, despite the defaults of our `date-relative`, we are satisfied with the result and revisit the event based binding of Polymer in our next commits.
+
+## Previous Steps
+
 ### Making the color of fresh comments configurable
 
 Polymer as some great features for making the style of elements configurable. We are going to use [custom CSS propertiess](https://www.polymer-project.org/1.0/docs/devguide/styling#xscope-styling-details) in our example.
@@ -13,8 +25,6 @@ This new CSS property can now be set by the host of the element in a custom styl
 Custom CSS properties are a neat feature. But what if we want also change the font style from bold to italic or change the font size. Creating a custom property for each and every possible aspect of the style would be tedious.
 
 Fortunately there is another way, as we will see in our next commit.
-
-## Previous Steps
 
 ### Making the freshness configurable
 
