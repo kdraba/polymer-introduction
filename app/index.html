@@ -65,6 +65,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- endbuild -->
   
   <template is="dom-bind" id="app">
+    <style is="custom-style">
+      :root {
+        --freshness-color: darkblue;
+      }
+    </style>
+    
     <iron-ajax auto url="data.json" handle-as="json" last-response="{{comments}}"></iron-ajax>
     <app-tick tick="{{tick}}"></app-tick>
     
