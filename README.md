@@ -2,6 +2,20 @@
 
 ## Current Step
 
+### Inverting the comment list
+
+We could simply use the [sort feature of dom-repeat](https://www.polymer-project.org/1.0/docs/devguide/templates#filtering-and-sorting-lists) to display our comments in inverted order. But sometimes there are use cases where you want to use an inverted list in mutiple bindings, so we are going to create our own new `list-inverse` element instead. This provides us with a opportunity to learn something more about the events that drive the Polymer binding system.
+
+Our new `list-inverse` element is defined in [app/elements/list-inverse/list-inverse.html](./app/elements/list-inverse/list-inverse.html). It has to properties, the original list and the resulting inverted list, which is a read only property that notifies changes. We could have made the inverted list a computed property, but we opted to initialize it using an observer instead.
+
+The initialization of our inverted list is easy. Whenever the original list changes, we create a new inverted list and push the items of our original list in inverted order to our inverted list. Because the inverted list property is read only, we have to use its setter to update its value. Please note that we are using a factory function to define the initial value of our original list. This assures that all `list-inverse` elements have different arrays as their original value and adding items to one `list-inverse` original list does not change the original list of others.
+
+In our [app/index.html](./app/index.html) we are inserting our new element and bind our `dom-repeat` to the inverted list instead of the original one. And do not forget to import the `list-invere` element in our [app/elements/elements.html](./app/elements/elements.html) as we are using it directly in [app/index.html](./app/index.html).
+
+So lets have a look at our [app](http://localhost:5000/). Everything seems fine. Our comment list is now displayed in its inverted order again, i.e. newest comments at the top and oldest at the bottom. But we broke something - again. Adding and deleting comments are not working. You guessed it - we are going to fix this with our next commit.
+
+## Previous Steps
+
 ### Adding a number to each comment
 
 So far the order of the displayed comments has been the order of the comments in the array. We are going to change that soon. To have a better visual feedback of the order, we are giving each comment a number in this commit.
@@ -11,8 +25,6 @@ The new number is calculated in [app/scripts/app.js](./app/scripts/app.js) based
 We make the number visible in [app/index.html](./app/index.html) and adjust our initial data in [app/data.json](./app/data.json) accordingly.
 
 If you take a look at our [app](http://localhost:5000/) now, you will see that our comments are displayed with a number in the same order as the array. We are going to invert the display order again, with our next commit.
-
-## Previous Steps
 
 ### Using CSS mixins to theme our application
 

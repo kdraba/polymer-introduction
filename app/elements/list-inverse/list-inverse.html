@@ -1,0 +1,48 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="list-inverse">
+  <template>
+    <style>
+      :host {
+        display: none;
+      }
+    </style>
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'list-inverse',
+        
+        properties: {
+          list: {
+            type: Array,
+            value: function() {
+              return [];
+            }
+          },
+          inverseList: {
+            type: Array,
+            readOnly: true,
+            notify: true
+          }
+        },
+        
+        observers: ['_initInverseList(list)'],
+        
+        _initInverseList: function(list) {
+          var component = this;
+          var inverseList = [];
+          
+          for (var i = 0; i < list.length; i++) {
+            inverseList.push(list[list.length - i - 1]);
+          }
+          
+          component._setInverseList(inverseList);
+        }
+      });
+    })();
+  </script>
+</dom-module>
