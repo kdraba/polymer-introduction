@@ -2,13 +2,19 @@
 
 ## Current Step
 
+### Making the freshness configurable
+
+We make the freshness of a commit configurable by putting the duration in its own property in [app/elements/date-relative/date-relative.html](./app/elements/date-relative/date-relative.html). This should be straight forward by now and there is not much to say about it. We just add the property to the element and add it as a dependency to our function to calculate the class. This way the class is reevaluated as soon as the freshness configuration, the set date or the tick changes.
+
+Not everybody will be happy with our dark red color for new commits. Hence we are going to make the color configurable too, in our next commit.
+
+## Previous Steps
+
 ### Updating the relative date element classes with each tick
 
 In our previous commit the `fresh` class of our [date-relative](./app/elements/date-relative/date-relative.html) element is not removed, when time passes. Fixing this is easy, as we have done this before. We just add the `tick` as an additional parameter to our binding function. Done. Now the class is removed as time passes by, as you can see in our [app](http://localhost:5000/).
 
 In our next commit we make the freshness of comments configurable.
-
-## Previous Steps
 
 ### Adding a special class to fresh comments
 
