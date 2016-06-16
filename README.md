@@ -2,6 +2,18 @@
 
 ## Current Step
 
+### Adding a number to each comment
+
+So far the order of the displayed comments has been the order of the comments in the array. We are going to change that soon. To have a better visual feedback of the order, we are giving each comment a number in this commit.
+
+The new number is calculated in [app/scripts/app.js](./app/scripts/app.js) based on the number of the last element in the array. Instead of putting new comments at the start of the array we are now pushing them to the end.
+
+We make the number visible in [app/index.html](./app/index.html) and adjust our initial data in [app/data.json](./app/data.json) accordingly.
+
+If you take a look at our [app](http://localhost:5000/) now, you will see that our comments are displayed with a number in the same order as the array. We are going to invert the display order again, with our next commit.
+
+## Previous Steps
+
 ### Using CSS mixins to theme our application
 
 Allowing others to change the color of our fresh comments dates is not enough. We also want them to be able to change other aspects of the style. We are using [CSS mixins](https://www.polymer-project.org/1.0/docs/devguide/styling#custom-css-mixins) for this. Using CSS mixins is easy.
@@ -11,8 +23,6 @@ We define the mixin and its point of inclusion point in the style section of our
 Just like with custom CSS properties, the host of our element can now define the values of the mixin. For our app we do this in [app/index.html](./app/index.html). All those values are merged into the default style of our element.
 
 Now that our fresh comments have a normal font weight and are italic, despite the defaults of our `date-relative`, we are satisfied with the result and revisit the event based binding of Polymer in our next commits.
-
-## Previous Steps
 
 ### Making the color of fresh comments configurable
 
