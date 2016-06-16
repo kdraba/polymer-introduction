@@ -2,6 +2,14 @@
 
 ## Current Step
 
+### Updating the relative date element classes with each tick
+
+In our previous commit the `fresh` class of our [date-relative](./app/elements/date-relative/date-relative.html) element is not removed, when time passes. Fixing this is easy, as we have done this before. We just add the `tick` as an additional parameter to our binding function. Done. Now the class is removed as time passes by, as you can see in our [app](http://localhost:5000/).
+
+In our next commit we make the freshness of comments configurable.
+
+## Previous Steps
+
 ### Adding a special class to fresh comments
 
 This time we are going to give the relative date of fresh comments a special look by adding a class to them.
@@ -13,8 +21,6 @@ In our `style` we give fresh dates a distinct look by coloring them dark red and
 And again, take a look at our [app](http://localhost:5000/) and add a new comment. The date of the comment is styled in dark red and is bold. Our `class` is working. You can see that in your browsers DOM explorer. But just as with our relative date text, the class is not updated, i.e. it is not removed from the element as time passes by.
 
 Do you know what our code is missing? So lets move on to our next commit.
-
-## Previous Steps
 
 ### Creating a tick behavior
 
