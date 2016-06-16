@@ -12,6 +12,16 @@
   <script>
     (function() {
       'use strict';
+      
+      function invertList(list) {
+          var inverseList = [];
+          
+          for (var i = 0; i < list.length; i++) {
+            inverseList.push(list[list.length - i - 1]);
+          }
+          
+          return inverseList;
+        }
 
       Polymer({
         is: 'list-inverse',
@@ -30,17 +40,28 @@
           }
         },
         
-        observers: ['_initInverseList(list)'],
+        observers: ['_initInverseList(list)', '_updateInverseList(list.splices)', /* '_updateList(inverseList.splices)'*/],
         
         _initInverseList: function(list) {
           var component = this;
-          var inverseList = [];
           
-          for (var i = 0; i < list.length; i++) {
-            inverseList.push(list[list.length - i - 1]);
+          component._setInverseList(invertList(list));
+        },
+        
+        _updateInverseList: function(listSplices) {
+          var component = this;
+          if (listSplices) {
+            listSplices.indexSplices.forEach(function(splice) {
+              if (splice.removed.length > 0) {
+                component.splice('inverseList', splice.object.length + splice.removed.length - splice.addedCount - splice.index - 1, splice.removed.length);
+              }
+              
+              if (splice.addedCount > 0) {
+                var inverseSlice = splice.object.slice(splice.index, splice.index + splice.addedCount);
+                component.splice.apply(component, ['inverseList', splice.object.length + splice.removed.length - splice.addedCount - splice.index, 0].concat(inverseSlice));  
+              }
+            })
           }
-          
-          component._setInverseList(inverseList);
         }
       });
     })();
