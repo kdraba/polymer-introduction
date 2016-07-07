@@ -3,7 +3,18 @@
 ## How to use this introduction
 
 - start by running over this page
-- checkout the latest branch and checkout its first commit in history, and follow the README.md of that commit
+- checkout the latest branch and checkout its first commit in history, then follow the README.md of that commit
+
+## Trying to get some common objections out of the way
+
+[Web Components](http://webcomponents.org/)? Oh no! Not another javascript frontend framework! - you might think.
+Don't worry! Web Components are not another framework! Web Components are not a framework at all! Just think of them as a concept or a standardized pattern for using some great new core platform features of the browser.
+
+'Yeah - if you say so ...', your inner voice might reply, '... but ...', and thats a very long '... buuuuuuut ...': '[Polymer](https://www.polymer-project.org/1.0/) is a framework or is it not?' So back where we started, just shout it out loud: 'Polymer? Oh no! Not another javascript frontend framework!'.
+
+You got me there. Polymer is not a core feature of the browser platform and it IS code and not a concept or usage pattern! - But wait. Is [the ajax part of jquery](http://api.jquery.com/jquery.ajax/) a framework? Is [momentjs](http://momentjs.com/) a framework? To me, they are not. To me, these are just libraries that make developer live much easier, when it comes to ajax requests and dates. To me, the same is true for Polymer. Polymer makes my life a lot easier, when it comes to writing custom elments. Thank you for that!
+
+Polymer has an ever growing ecosystem. That's not a bad thing. But that's not what this introduction is about. This introduction is about the core library and not about the frameworks you can build on top of it. There are some aspects of the core library that i think are framework-ish, e.g. some implications on its use of [bower](https://bower.io/) and [HTML imports](http://w3c.github.io/webcomponents/spec/imports/), but these aspects are evolving and i still hope for the best.
 
 ## Elements of an HTML page
 
