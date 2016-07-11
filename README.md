@@ -2,9 +2,13 @@
 
 ## Current Step
 
-### Making our hello-world world reusable
+### Making hello-world a custom element
+
+[MDN Custom Elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Custom_Elements)
 
 ## Previous Steps
+
+### Making our hello-world world reusable
 
 ### Creating a hello-world component without web components api
 

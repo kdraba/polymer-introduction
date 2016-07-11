@@ -63,23 +63,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- build:remove -->
   <span id="browser-sync-binding"></span>
   <!-- endbuild -->
-
-  <div class="hello-world"></div>
-  <div class="hello-world"></div>
+  
+  <hello-world></hello-world>
+  <hello-world></hello-world>
   
   <script>
-    document.querySelectorAll('.hello-world').forEach(function(helloWorld) {
+    var helloWorld = Object.create(HTMLElement.prototype);
+
+    helloWorld.createdCallback = function() {
+      var shadow = this.createShadowRoot();
+
       var input = document.createElement('input');
-      helloWorld.appendChild(input);
+      shadow.appendChild(input);
       
       var output = document.createElement('h2');
-      helloWorld.appendChild(output);
+      shadow.appendChild(output);
       
       input.addEventListener('input', function(event) {
         output.textContent = event.target.value;
       }, false);
-    });
-      
+    };
+
+    document.registerElement('hello-world', {
+      prototype: helloWorld
+    });      
   </script>
   
   <template is="dom-bind" id="app">
