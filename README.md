@@ -2,11 +2,15 @@
 
 ## Current Step
 
+### Going back to html by using html template for our hello-world element
+
+[MDN HTML Template](https://developer.mozilla.org/de/docs/Web/HTML/Element/template)
+
+## Previous Steps
+
 ### Using html import to import our hello-world element
 
 [MDN HTML Imports](https://developer.mozilla.org/en-US/docs/Web/Web_Components/HTML_Imports)
-
-## Previous Steps
 
 ### Making hello-world a custom element
 

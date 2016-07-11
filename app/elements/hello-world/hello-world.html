@@ -1,20 +1,23 @@
+<template id="hello-world">
+  <input type="text">
+  <h3></h3>
+</template>
+
 <script>
   (function(window) {
     var document = window.document;
     
     var helloWorld = Object.create(HTMLElement.prototype);
+    var template = document.currentScript.ownerDocument.querySelector('#hello-world');
 
     helloWorld.createdCallback = function() {
       var shadow = this.createShadowRoot();
 
-      var input = document.createElement('input');
-      shadow.appendChild(input);
+      var templateInstance = document.importNode(template.content, true);
+      shadow.appendChild(templateInstance);
       
-      var output = document.createElement('h2');
-      shadow.appendChild(output);
-      
-      input.addEventListener('input', function(event) {
-        output.textContent = event.target.value;
+      shadow.querySelector('input').addEventListener('input', function(event) {
+        shadow.querySelector('h3').textContent = event.target.value;
       }, false);
     };
 
