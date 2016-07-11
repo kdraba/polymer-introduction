@@ -2,9 +2,11 @@
 
 ## Current Step
 
-### Creating a hello-world component without web components API 
+### Making our hello-world world reusable
 
 ## Previous Steps
+
+### Creating a hello-world component without web components api
 
 ### Going back to the roots
 

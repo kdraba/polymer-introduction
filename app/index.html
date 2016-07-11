@@ -64,20 +64,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <span id="browser-sync-binding"></span>
   <!-- endbuild -->
 
-  <input class="hello-world" type="text">
-  <h3 class="hello-world output"></h3>
-  <script>
-    document.querySelector('input.hello-world').addEventListener('input', function(event) {
-      document.querySelector('.hello-world.output').textContent = event.target.value;
-    }, false);
-  </script>
+  <div class="hello-world"></div>
+  <div class="hello-world"></div>
   
-  <input class="hello-world2" type="text">
-  <h3 class="hello-world2 output"></h3>
   <script>
-    document.querySelector('input.hello-world2').addEventListener('input', function(event) {
-      document.querySelector('.hello-world2.output').textContent = event.target.value;
-    }, false);
+    document.querySelectorAll('.hello-world').forEach(function(helloWorld) {
+      var input = document.createElement('input');
+      helloWorld.appendChild(input);
+      
+      var output = document.createElement('h2');
+      helloWorld.appendChild(output);
+      
+      input.addEventListener('input', function(event) {
+        output.textContent = event.target.value;
+      }, false);
+    });
+      
   </script>
   
   <template is="dom-bind" id="app">
