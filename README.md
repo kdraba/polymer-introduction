@@ -2,14 +2,16 @@
 
 ## Current Step
 
+### Creating a hello-world component without web components API 
+
+## Previous Steps
+
 ### Going back to the roots
 
 The Polymer Starter Kit is great. But I prefer learning by doing small steps and understanding changes line by line.
 Hence i removed all the great content from the Polymer Startet Kit leaving us with the dreaded blank page.
 
 Thats it for this step. Continue to the next commit ... yes you could really have skipped this one.
-
-## Previous Steps
 
 ### Start
 
