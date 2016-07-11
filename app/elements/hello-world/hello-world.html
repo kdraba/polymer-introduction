@@ -1,0 +1,25 @@
+<script>
+  (function(window) {
+    var document = window.document;
+    
+    var helloWorld = Object.create(HTMLElement.prototype);
+
+    helloWorld.createdCallback = function() {
+      var shadow = this.createShadowRoot();
+
+      var input = document.createElement('input');
+      shadow.appendChild(input);
+      
+      var output = document.createElement('h2');
+      shadow.appendChild(output);
+      
+      input.addEventListener('input', function(event) {
+        output.textContent = event.target.value;
+      }, false);
+    };
+
+    document.registerElement('hello-world', {
+      prototype: helloWorld
+    });
+  })(this);
+</script>

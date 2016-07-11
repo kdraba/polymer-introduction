@@ -54,6 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- Because this project uses vulcanize this should be your only html import
        in this file. All other imports should go in elements.html -->
   <link rel="import" href="elements/elements.html">
+  <link rel="import" href="elements/hello-world/hello-world.html">
 
   <!-- For shared styles, shared-styles.html import in elements.html -->
   <style is="custom-style" include="shared-styles"></style>
@@ -66,28 +67,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   <hello-world></hello-world>
   <hello-world></hello-world>
-  
-  <script>
-    var helloWorld = Object.create(HTMLElement.prototype);
-
-    helloWorld.createdCallback = function() {
-      var shadow = this.createShadowRoot();
-
-      var input = document.createElement('input');
-      shadow.appendChild(input);
-      
-      var output = document.createElement('h2');
-      shadow.appendChild(output);
-      
-      input.addEventListener('input', function(event) {
-        output.textContent = event.target.value;
-      }, false);
-    };
-
-    document.registerElement('hello-world', {
-      prototype: helloWorld
-    });      
-  </script>
   
   <template is="dom-bind" id="app">
     
