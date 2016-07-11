@@ -2,11 +2,13 @@
 
 ## Current Step
 
+### Our hello-world element - the Polymer way
+
+## Previous Steps
+
 ### Going back to html by using html template for our hello-world element
 
 [MDN HTML Template](https://developer.mozilla.org/de/docs/Web/HTML/Element/template)
-
-## Previous Steps
 
 ### Using html import to import our hello-world element
 
